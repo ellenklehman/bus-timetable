@@ -1,0 +1,13 @@
+  <%= render('layouts/errors', :object => @stop) %>
+
+  <%= form_for(@stop) do |f| %>
+    <div class="form-group">
+      <%= f.label :station %>
+      <%= f.collection_select :station_id, Station.all, :id, :name %>
+    </div>
+    <div class="form-group">
+      <%= f.label :line %>
+      <%= f.collection_select :line_id, Line.all, :id, :name %>
+    </div>
+    <%= f.submit(:class => "btn btn-primary") %>
+  <% end %>

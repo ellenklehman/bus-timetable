@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Lines <small><%= @line.name %></small></h1>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Stations</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <% @line.stations.each do |station| %>
+          <li><%= link_to "#{station.name}", station_path(station) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <p><%= link_to "Update", edit_line_path(@line) %></p>
+  <p><%= link_to "Delete", line_path(@line),
+            :data => {:confirm => "You sure?", :method => "delete"} %></p>
+</div>

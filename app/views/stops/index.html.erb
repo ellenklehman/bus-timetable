@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="page-header">
+    <h1>All Stops</h1>
+  </div>
+
+  <ul>
+    <% @stops.each do |stop| %>
+      <li><%= link_to "#{stop.line.name} / #{stop.station.name}", stop_path(stop) %></li>
+    <% end %>
+  </ul>
+
+  <p><%= link_to "Add new stop", new_stop_path, :class => "btn btn-primary" %></p>
+</div>

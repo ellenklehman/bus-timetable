@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Stops <small><%= @stop.line.name %>: <%= @stop.station.name %></small></h1>
+  </div>
+
+  <h4>Line: <%= @stop.line.name %></h4>
+  <h4>Station: <%= @stop.station.name %></h4>
+
+  <p><%= link_to "Update", edit_stop_path(@stop) %></p>
+  <p><%= link_to "Delete", stop_path(@stop),
+            :data => {:confirm => "You sure?", :method => "delete"} %></p>
+</div>

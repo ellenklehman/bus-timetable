@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Lines</h1>
+  </div>
+
+  <ul>
+    <% @lines.each do |line| %>
+      <li><%= link_to "#{line.name}", line_path(line) %></li>
+    <% end %>
+  </ul>
+
+  <p><%= link_to "Add new line", new_line_path, :class => "btn btn-primary" %></p>
+</div>

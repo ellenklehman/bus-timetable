@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Stops <small><%= @stop.line.name %>: <%= @stop.station.name %></small></h1>
+  </div>
+
+  <%= render('form') %>
+
+  <br>
+  <p><%= link_to "Return to stop page", stop_path(@stop) %></p>
+</div>

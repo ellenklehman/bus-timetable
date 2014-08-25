@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Stations <small><%= @station.name %></small></h1>
+  </div>
+
+  <%= render('form') %>
+
+  <br>
+  <p><%= link_to "Return to #{@station.name}", station_path(@station) %></p>
+  <p><%= link_to "Return to Stations", stations_path %></p>
+</div>
