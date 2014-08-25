@@ -43,6 +43,6 @@ class LinesController < ApplicationController
 
 private
   def line_params
-    params.require(:line).permit(:name)
+    params.require(:line).permit(:name, station_ids: [])
   end
 end
