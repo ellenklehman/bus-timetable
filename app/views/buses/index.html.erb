@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Buses</h1>
+  </div>
+
+  <ul>
+    <% @buses.each do |bus| %>
+      <li><%= link_to "#{bus.number}", bus_path(bus) %></li>
+    <% end %>
+  </ul>
+
+  <p><%= link_to "Add new bus", new_bus_path, :class => "btn btn-primary" %></p>
+</div>

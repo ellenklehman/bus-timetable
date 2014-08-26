@@ -10,6 +10,7 @@ class LinesController < ApplicationController
   def create
     @line = Line.new(line_params)
     if @line.save
+      @line.station_ids = params[:line][:station_ids]
       flash[:notice] = "New line created!"
       redirect_to line_path(@line)
     else
@@ -28,6 +29,7 @@ class LinesController < ApplicationController
   def update
     @line = Line.find(params[:id])
     if @line.update(line_params)
+      @line.station_ids = params[:line][:station_ids]
       flash[:notice] = "Line updated successfully!"
       redirect_to line_path(@line)
     else
@@ -37,12 +39,13 @@ class LinesController < ApplicationController
 
   def destroy
     @line = Line.find(params[:id])
+    @line.stops.destroy_all
     @line.destroy
     redirect_to lines_path
   end
 
 private
   def line_params
-    params.require(:line).permit(:name, station_ids: [])
+    params.require(:line).permit(:name)
   end
 end

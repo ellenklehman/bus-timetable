@@ -6,11 +6,11 @@
       <%= f.text_field :name %>
     </div>
     <div class="form-group">
-      <%= hidden_field_tag "station[line_ids][]", nil %>
-      <% Line.all.each do |line| %>
-        <%= check_box_tag "station[line_ids][]", line.id, @station.line_ids.include?(line.id), id: dom_id(line) %>
-        <%= label_tag dom_id(line), line.name %><br>
-      <% end %>
+      <%= f.label :lines %>
+      <br>
+      <%= f.collection_check_boxes :line_ids, Line.all, :id, :name %>
     </div>
     <%= f.submit(:class => "btn btn-primary") %>
   <% end %>
+
+

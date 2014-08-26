@@ -10,6 +10,7 @@ class StationsController < ApplicationController
   def create
     @station = Station.new(station_params)
     if @station.save
+      @station.line_ids = params[:station][:line_ids]
       flash[:notice] = "New station created!"
       redirect_to station_path(@station)
     else
@@ -28,6 +29,7 @@ class StationsController < ApplicationController
   def update
     @station = Station.find(params[:id])
     if @station.update(station_params)
+      @station.line_ids = params[:station][:line_ids]
       flash[:notice] = "Station updated successfully!"
       redirect_to station_path(@station)
     else
@@ -37,12 +39,13 @@ class StationsController < ApplicationController
 
   def destroy
     @station = Station.find(params[:id])
+    @station.stops.destroy_all
     @station.destroy
     redirect_to stations_path
   end
 
 private
   def station_params
-    params.require(:station).permit(:name, line_ids: [])
+    params.require(:station).permit(:name)
   end
 end
