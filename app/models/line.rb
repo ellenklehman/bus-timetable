@@ -35,7 +35,6 @@ class Line < ActiveRecord::Base
       nodes << {id: index +1, caption: station.name }
       hash[station.id] = index + 1
     end
-    p hash
     edges = []
     Line.all.each do |line|
       all_stations = Stop.where(:line_id => line.id).order(:station_id).map { |stop| stop.station }
