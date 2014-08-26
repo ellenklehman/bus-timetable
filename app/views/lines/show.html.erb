@@ -29,6 +29,12 @@
     </div>
   </div>
 
+  <div id="alchemy" class="alchemy"></div>
+  <script type="text/javascript">
+    var some_data = <%= @line_data.html_safe %>;
+    alchemy.begin({"dataSource": some_data})
+  </script>
+
   <p><%= link_to "Update", edit_line_path(@line) %></p>
   <p><%= link_to "Delete", line_path(@line),
             :data => {:confirm => "You sure?", :method => "delete"} %></p>

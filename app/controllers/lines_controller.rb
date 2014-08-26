@@ -20,6 +20,7 @@ class LinesController < ApplicationController
 
   def show
     @line = Line.find(params[:id])
+    @line_data = @line.line_map.to_json
   end
 
   def edit

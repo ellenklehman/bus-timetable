@@ -151,6 +151,7 @@ DEPENDENCIES
   coffee-rails
   d3-rails
   jquery-rails
+  json
   pg
   quiet_assets
   rails

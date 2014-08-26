@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'd3-rails'
+gem 'json'
 
 group :development do
   gem 'better_errors'
