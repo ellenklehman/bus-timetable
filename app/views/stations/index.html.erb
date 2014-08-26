@@ -9,5 +9,15 @@
     <% end %>
   </ul>
 
+  <div id="alchemy" class="alchemy"></div>
+  <script type="text/javascript">
+    var config = {
+      "dataSource": <%= @all_lines_data.html_safe %>,
+      "graphHeight": function() { return 250 },
+      "graphWidth": function() { return 500 },
+    };
+    alchemy.begin(config)
+  </script>
+
   <p><%= link_to "Add new station", new_station_path, :class => "btn btn-primary" %></p>
 </div>

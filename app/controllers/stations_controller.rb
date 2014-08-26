@@ -1,6 +1,7 @@
 class StationsController < ApplicationController
   def index
     @stations = Station.all
+    @all_lines_data = Line.big_map.to_json
   end
 
   def new

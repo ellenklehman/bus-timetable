@@ -23,9 +23,29 @@ class Line < ActiveRecord::Base
     end
     edges = []
     (1..all_stations.length - 1).each do |number|
-      edges << {source: number, target: number + 1}
+      edges << {source: number, target: number + 1, caption: self.name}
     end
     {nodes: nodes, edges: edges}
   end
-end
 
+  def self.big_map
+    nodes = []
+    hash = {}
+    Station.all.each_with_index do |station, index|
+      nodes << {id: index +1, caption: station.name }
+      hash[station.id] = index + 1
+    end
+    p hash
+    edges = []
+    Line.all.each do |line|
+      all_stations = Stop.where(:line_id => line.id).order(:station_id).map { |stop| stop.station }
+      all_stations.each_with_index do |station, index|
+        if index == all_stations.length - 1 then
+          break
+        end
+        edges << {source: hash[station.id], target: hash[all_stations[index + 1].id], caption: line.name}
+      end
+    end
+    {nodes: nodes, edges: edges.flatten}
+  end
+end

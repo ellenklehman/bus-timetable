@@ -30,8 +30,27 @@ describe Line do
       new_stop = new_line.stops.create(:station_id => new_station.id)
       another_stop = new_line.stops.create(:station_id => another_station.id)
       yet_another_stop = new_line.stops.create(:station_id => yet_another_station.id)
-      result = {nodes: [{id: 1, caption: new_station.name}, {id: 2, caption: another_station.name}, {id: 3, caption: yet_another_station.name}], edges: [{source: 1, target: 2}, {source: 2, target: 3}]}
+      result = {nodes: [{id: 1, caption: new_station.name}, {id: 2, caption: another_station.name}, {id: 3, caption: yet_another_station.name}], edges: [{source: 1, target: 2, caption: new_line.name}, {source: 2, target: 3, caption: new_line.name}]}
       expect(new_line.line_map).to eq result
+    end
+  end
+
+  describe "big_map" do
+    it "returns all lines and stations in format to be mapped" do
+      new_station = Station.create(:name => "Paddington 1")
+      another_station = Station.create(:name => "Hugo 2")
+      yet_another_station = Station.create(:name => "Kings Cross 3")
+      station_max = Station.create(:name => "Union")
+      new_line = Line.create(:name => "Hogwarts Express")
+      another_line = Line.create(:name => "Max")
+      new_stop = new_line.stops.create(:station_id => new_station.id)
+      another_stop = new_line.stops.create(:station_id => another_station.id)
+      yet_another_stop = new_line.stops.create(:station_id => yet_another_station.id)
+      stop_max = another_line.stops.create(:station_id => station_max.id)
+      stop_max_2 = another_line.stops.create(:station_id => new_station.id)
+      stop_max_3 = another_line.stops.create(:station_id => yet_another_station.id)
+      result = {nodes: [{id: 1, caption: new_station.name}, {id: 2, caption: another_station.name}, {id: 3, caption: yet_another_station.name}, {id: 4, caption: station_max.name}], edges: [{source: 1, target: 2, caption: new_line.name}, {source: 2, target: 3, caption: new_line.name}, {source: 1, target: 3, caption: another_line.name}, {source: 3, target: 4, caption: another_line.name}]}
+      expect(Line.big_map).to eq result
     end
   end
 end
